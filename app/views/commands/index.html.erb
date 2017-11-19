@@ -1,0 +1,45 @@
+<h1>Commands</h1>
+
+<% if @commands.any? %>
+    <table>
+      <thead>
+      <tr>
+        <th>created</th>
+        <th>logo</th>
+        <th>name</th>
+        <th>owner</th>
+        <th>actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @commands.each do |command| %>
+          <tr>
+            <td>
+              <%= command.created_at.strftime('%e %B %Y, %k:%M') %>
+            </td>
+            <td>
+              <img src="data:image/gif;base64,<%= command.logo %>" height="100" width="100"/>
+            </td>
+            <td>
+              <%= command.name %>
+            </td>
+            <td>
+              <%= command.user.email %>
+            </td>
+            <td>
+              <% if command.user == current_user %>
+                  <%= link_to "edit", edit_command_path(command)  %>
+                  <%= link_to "delete", command_path(command), :method => :delete  %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    no data
+<% end %>
+
+<% if !current_user.has_command? %>
+    <%= link_to "create", new_command_path %>
+<% end %>

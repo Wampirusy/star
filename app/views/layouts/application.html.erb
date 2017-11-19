@@ -9,6 +9,13 @@
   </head>
 
   <body>
+    <nav>
+      <a href="/">home</a>
+      <% if user_signed_in? %>
+          <%= link_to "tournaments", tournaments_path %>
+          <%= link_to "Sign out (#{current_user.email})", destroy_user_session_path, :method => :delete %>
+      <% end %>
+    </nav>
     <%= yield %>
   </body>
 </html>

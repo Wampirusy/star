@@ -1,0 +1,35 @@
+<h1>Tournaments</h1>
+
+<% if @tournaments.any? %>
+    <table>
+      <thead>
+      <tr>
+        <th>name</th>
+        <th>commands</th>
+        <th>actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <% @tournaments.each do |tournament| %>
+          <tr>
+            <td>
+              <%= tournament.name %>
+            </td>
+            <td>
+              <%= tournament.commands.count %>
+            </td>
+            <td>
+              <%=tournament.has_command? current_user.command%>
+              <% if tournament.has_command? current_user.command %>
+                  <%= link_to "sign_out", sign_out_tournament_path(tournament), :method => :post  %>
+              <% else %>
+                  <%= link_to "sign_in", sign_in_tournament_path(tournament), :method => :post  %>
+              <% end %>
+            </td>
+          </tr>
+      <% end %>
+      </tbody>
+    </table>
+<% else %>
+    no data
+<% end %>
