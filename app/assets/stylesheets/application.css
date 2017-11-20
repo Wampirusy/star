@@ -13,3 +13,14 @@
  *= require_tree .
  *= require_self
  */
+
+td.command_logo {
+    max-height: 100px;
+    max-width: 100px;
+    text-align: center;
+}
+
+img.command_logo {
+    max-height: 100px;
+    max-width: 100px;
+}

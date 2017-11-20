@@ -10,19 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171119113012) do
+ActiveRecord::Schema.define(version: 20171119103524) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "ccccc", force: :cascade do |t|
-    t.string "name"
-    t.bigint "user_id"
-    t.binary "logo"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_ccccc_on_user_id"
-  end
 
   create_table "commands", force: :cascade do |t|
     t.string "name"
@@ -36,6 +27,9 @@ ActiveRecord::Schema.define(version: 20171119113012) do
   create_table "commands_tournaments", id: false, force: :cascade do |t|
     t.bigint "tournament_id", null: false
     t.bigint "command_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["tournament_id", "command_id"], name: "index_commands_tournaments_on_tournament_id_and_command_id", unique: true
   end
 
   create_table "tournaments", force: :cascade do |t|
@@ -61,4 +55,5 @@ ActiveRecord::Schema.define(version: 20171119113012) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "commands", "users"
 end

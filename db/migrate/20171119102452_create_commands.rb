@@ -7,5 +7,7 @@ class CreateCommands < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+    
+    add_foreign_key :commands, :users
   end
 end

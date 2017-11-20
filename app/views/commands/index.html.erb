@@ -17,8 +17,8 @@
             <td>
               <%= command.created_at.strftime('%e %B %Y, %k:%M') %>
             </td>
-            <td>
-              <img src="data:image/gif;base64,<%= command.logo %>" height="50%" width="50%"/>
+            <td class="command_logo">
+              <%= logo_img command %>
             </td>
             <td>
               <%= command.name %>
@@ -40,6 +40,6 @@
     no data
 <% end %>
 
-<% if !current_user.has_command? %>
+<% if user_signed_in? && !current_user.has_command? %>
     <%= link_to "create", new_command_path %>
 <% end %>

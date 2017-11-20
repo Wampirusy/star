@@ -10,10 +10,13 @@
 
   <body>
     <nav>
-      <a href="/">home</a>
+        <% menu.each do |item, link| %>
+          <%= link_to item, link %>
+<% end %>
       <% if user_signed_in? %>
-          <%= link_to "tournaments", tournaments_path %>
           <%= link_to "Sign out (#{current_user.email})", destroy_user_session_path, :method => :delete %>
+        <% else %>
+          <%= link_to "Sign in", new_user_session_path %>
       <% end %>
     </nav>
     <%= yield %>

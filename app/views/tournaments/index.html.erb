@@ -16,14 +16,19 @@
               <%= tournament.name %>
             </td>
             <td>
-              <%= tournament.commands.count %>
+                <% if tournament.commands.count > 0 %>
+                  <%= link_to tournament.commands.count, tournament_path(tournament) %>
+                <% else %>
+                  0
+                <% end %>
             </td>
             <td>
-              <%=tournament.has_command? current_user.command%>
-              <% if tournament.has_command? current_user.command %>
-                  <%= link_to "sign_out", sign_out_tournament_path(tournament), :method => :post  %>
-              <% else %>
-                  <%= link_to "sign_in", sign_in_tournament_path(tournament), :method => :post  %>
+              <% if user_signed_in? && current_user.command %>
+                <% if tournament.has_command? current_user.command %>
+                    <%= link_to "sign_out", sign_out_tournament_path(tournament), :method => :post  %>
+                <% else %>
+                    <%= link_to "sign_in", sign_in_tournament_path(tournament), :method => :post  %>
+                <% end %>
               <% end %>
             </td>
           </tr>

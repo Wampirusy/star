@@ -6,7 +6,7 @@ Rails.application.routes.draw do
 
   resources :commands
 
-  resources :tournaments, only: [:index]
+  resources :tournaments, only: [:index, :show]
   post '/tournaments/:id/sign_in' => 'tournaments#sign_in', :as => 'sign_in_tournament'
   post '/tournaments/:id/sign_out' => 'tournaments#sign_out', :as => 'sign_out_tournament'
 
