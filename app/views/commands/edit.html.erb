@@ -1,13 +1,13 @@
 <h1>Create command</h1>
 
-<% errors = flash[:error] %>
-
 <%= form_for(@command, method: :put) do |form| %>
-    <%= label_tag(:name, "name") %>
-    <%= form.text_field(:name) %>
-    <section class="errors"><%= errors['name'].join(' & ') if errors && errors['name'] %></section>
-    <%= label_tag(:name, "logo") %>
-    <%= form.file_field(:logo) %>
-    <section class="errors"><%= errors['logo'].join(' & ') if errors && errors['logo'] %></section>
-    <%= submit_tag('send') %>
+  <%= label_tag(:name, "name") %>
+  <%= form.text_field(:name) %>
+  <section class="errors"><%= show_errors 'name' %></section>
+
+  <%= label_tag(:name, "logo") %>
+  <%= form.file_field(:logo) %>
+  <section class="errors"><%= show_errors 'logo' %></section>
+
+  <%= submit_tag('send') %>
 <% end %>

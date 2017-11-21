@@ -1,45 +1,49 @@
 <h1>Commands</h1>
 
 <% if @commands.any? %>
-    <table>
+  <table>
       <thead>
-      <tr>
-        <th>created</th>
-        <th>logo</th>
-        <th>name</th>
-        <th>owner</th>
-        <th>actions</th>
-      </tr>
+          <tr>
+              <th>created</th>
+              <th>logo</th>
+              <th>name</th>
+              <th>owner</th>
+              <% if user_signed_in? %>
+                <th>actions</th>
+              <% end %>
+          </tr>
       </thead>
       <tbody>
-      <% @commands.each do |command| %>
-          <tr>
-            <td>
-              <%= command.created_at.strftime('%e %B %Y, %k:%M') %>
-            </td>
-            <td class="command_logo">
-              <%= logo_img command %>
-            </td>
-            <td>
-              <%= command.name %>
-            </td>
-            <td>
-              <%= command.user.email %>
-            </td>
-            <td>
-              <% if command.user == current_user %>
-                  <%= link_to "edit", edit_command_path(command)  %>
-                  <%= link_to "delete", command_path(command), :method => :delete  %>
-              <% end %>
-            </td>
-          </tr>
-      <% end %>
+          <% @commands.each do |command| %>
+            <tr>
+                <td>
+                    <%= command.created_at.strftime('%e %B %Y, %k:%M') %>
+                </td>
+                <td class="command_logo">
+                    <%= logo_img command %>
+                </td>
+                <td>
+                    <%= command.name %>
+                </td>
+                <td>
+                    <%= command.user.email %>
+                </td>
+                <% if user_signed_in? %>
+                  <td>
+                      <% if command.user == current_user %>
+                        <%= link_to "edit", edit_command_path(command)  %>
+                        <%= link_to "delete", command_path(command), :method => :delete  %>
+                      <% end %>
+                  </td>
+                <% end %>
+            </tr>
+          <% end %>
       </tbody>
-    </table>
+  </table>
 <% else %>
-    no data
+  no data
 <% end %>
 
 <% if user_signed_in? && !current_user.has_command? %>
-    <%= link_to "create", new_command_path %>
+  <%= link_to "create", new_command_path %>
 <% end %>

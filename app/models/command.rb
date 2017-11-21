@@ -2,6 +2,7 @@ require 'mini_magick'
 
 class Command < ApplicationRecord
   belongs_to :user
+  has_one :subscription
   
   validates :name, uniqueness: true
 

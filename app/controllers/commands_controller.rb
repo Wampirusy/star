@@ -1,4 +1,6 @@
 class CommandsController < ApplicationController
+   before_action :authenticate_user!, :except => [:index]
+  
   def index
     @commands = Command.all
   end
@@ -8,13 +10,13 @@ class CommandsController < ApplicationController
   end
 
   def create
-    @command = Command.new( params.require(:command).permit(:name, :logo))
+    @command = Command.new(params.require(:command).permit(:name, :logo))
     @command.user = current_user
 
     if @command.save
       redirect_to :root
     else
-      flash[:error] = @command.errors
+      flash[:errors] = @command.errors
 
       redirect_to new_command_path
     end
@@ -27,10 +29,10 @@ class CommandsController < ApplicationController
   def update
     @command = Command.find(params[:id])
     
-    if @command.update params.require(:command).permit(:name, :logo)
+    if @command.update(params.require(:command).permit(:name, :logo))
       redirect_to :root
     else
-      flash[:error] = @command.errors
+      flash[:errors] = @command.errors
 
       redirect_to edit_command_path
     end
