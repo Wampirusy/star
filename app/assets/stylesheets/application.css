@@ -13,3 +13,55 @@
  *= require_tree .
  *= require_self
  */
+
+header,
+footer,
+.main {
+    width: 1024px;
+    margin: auto;
+}
+
+header {
+    text-align: right;
+}
+
+.main h1,
+.main h2 {
+    text-align: center;
+}
+
+.main form {
+    width: 33%;
+    margin: auto;
+}
+
+.main form input[type=text],
+.main form input[type=file],
+.main form input[type=email],
+.main form input[type=password] {
+    width: 100%;
+}
+
+.main form input[type=submit] {
+    float: right;
+    width: 33%;
+}
+
+.main table {
+    margin: auto;
+}
+
+td.command_logo {
+    max-height: 100px;
+    max-width: 100px;
+    text-align: center;
+}
+
+img.command_logo {
+    max-height: 100px;
+    max-width: 100px;
+}
+
+.errors {
+    color: red;
+}
