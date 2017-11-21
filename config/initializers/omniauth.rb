@@ -34,7 +34,6 @@ module OmniAuth
       end
 
       def raw_info
-        p 'zzzz', access_token,access_token.get('/me'),'xxx'
         @raw_info ||= access_token.get('/me').parsed
       end
     end

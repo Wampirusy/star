@@ -1,5 +1,5 @@
 module ApplicationHelper
-	def menu
+  def menu
     {
       :home => root_path,
       :tournaments => tournaments_path,

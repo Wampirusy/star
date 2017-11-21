@@ -14,7 +14,7 @@
       <% @tournament.commands.each do |command| %>
           <tr>
               <td>
-                <%=  command.subscription.created_at.strftime('%e %B %Y, %k:%M') %>
+                <%= command.subscription.created_at.strftime('%e %B %Y, %k:%M') %>
               </td>
             <td class="command_logo">
               <%= logo_img command %>
